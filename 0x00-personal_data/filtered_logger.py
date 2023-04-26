@@ -3,9 +3,17 @@
 
 
 import re
+from typing import List
 
 
-def filter_datum(fields, redaction, message, separator):
-    """Funtion that return a string"""
-    pattern = r'({0})=([^{1}]+)'.format('|'.join(fields), separator)
-    return re.sub(pattern, r'\1={0}{1}'.format(redaction, separator), message)
+def filter_datum(
+        fields: List[str],
+        redaction: str, message: str, separator: str
+        ) -> str:
+    """returns strings obfuscated"""
+
+    for i in fields:
+        message = re.sub(i + "=.*?" + separator,
+                         i + "=" + redaction + separator,
+                         message)
+    return message
