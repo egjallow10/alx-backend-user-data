@@ -1,9 +1,10 @@
 #!/usr/bin/env python3
 """Function to filter"""
+
+
 import re
 
 
 def filter_datum(fields, redaction, message, separator):
-    """Function that returns the log message obfuscated"""
-    return re.sub('|'.join(fields)
-                  + r'=[^{}]+'.format(separator), redaction, message)
+    pattern = r'({0})=([^{1}]+)'.format('|'.join(fields), separator)
+    return re.sub(pattern, r'\1={0}{1}'.format(redaction, separator), message)
