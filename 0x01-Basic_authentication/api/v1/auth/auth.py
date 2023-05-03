@@ -2,7 +2,6 @@
 """
 Class templete for all authorization
 """
-
 from flask import request
 from typing import List, TypeVar
 from flask import request
