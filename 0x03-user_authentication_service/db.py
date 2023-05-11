@@ -42,7 +42,7 @@ class DB:
     def find_user_by(self, **kwargs) -> User:
         """find a record form Db"""
         try:
-            find_user = self.__session.query(User).filter_by(**kwargs).first()
+            find_user = self._session.query(User).filter_by(**kwargs).first()
         except TypeError:
             raise InvalidRequestError
         if find_user is None:
