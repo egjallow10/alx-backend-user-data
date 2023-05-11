@@ -9,7 +9,6 @@ from sqlalchemy.exc import InvalidRequestError
 from sqlalchemy.orm.exc import NoResultFound
 
 
-
 def _hash_password(password: str) -> bytes:
     """salting password and hashing"""
     salt_pass = password.encode('utf-8')
@@ -23,7 +22,6 @@ class Auth:
 
     def __init__(self):
         self._db = DB()
-        
 
     def register_user(self, email: str, password: str) -> User:
         """ returns a new users
@@ -38,9 +36,9 @@ class Auth:
         Returns:
             User: _description_
         """
-        
+
         try:
-            user= self._db.find_user_by(email=email)
+            user = self._db.find_user_by(email=email)
             raise ValueError("User {} already exits".format(user.email))
         except NoResultFound:
             pass
