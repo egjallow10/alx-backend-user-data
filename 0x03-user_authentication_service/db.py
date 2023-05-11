@@ -50,6 +50,7 @@ class DB:
         return find_user
 
     def update_user(self, user_id: int, **kwargs) -> None:
+        """find a user and update it"""
         update_data = self.find_user_by(id=user_id)
 
         for key, value in kwargs.items():
